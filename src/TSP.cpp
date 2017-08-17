@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
 		{
 			TourGA::mutationRate /= 2;
 		}
+		lastDistance = pop->getFittest()->getDistance();
 	}
 
 	// Print final results
