@@ -4,8 +4,9 @@
 class City
 {
 public:
-    City(int newX, int newY);
+    City(int newIndex, int newX, int newY);
 
+    int getIndex();
     int getX();
     int getY();
 
@@ -15,6 +16,7 @@ public:
 private:
     int x;
     int y;
+    int index;
 };
 
 #endif // TSP_CITY_H

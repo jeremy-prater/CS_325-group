@@ -1,8 +1,9 @@
 #include "city.h"
 #include <math.h>
 
-City::City(int newX, int newY)
+City::City(int newIndex, int newX, int newY)
 {
+    index = newIndex;
     x = newX;
     y = newY;
 }
@@ -15,6 +16,11 @@ int City::getX()
 int City::getY()
 {
     return y;
+}
+
+int City::getIndex()
+{
+    return index;
 }
 
 // return int to match program spec
