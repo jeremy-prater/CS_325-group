@@ -6,6 +6,7 @@
 class TourGA
 {
 public:
+    static int mutationRate;
     static TourPopulation * evolvePopulation(TourPopulation * pop);
     static Tour * crossover (Tour * parent1, Tour * parent2);
     static void mutate(Tour * tour);
@@ -13,7 +14,6 @@ public:
 
 
 private:
-    static int mutationRate;
     static int tournamentSize;
     static bool elitism;
 };
