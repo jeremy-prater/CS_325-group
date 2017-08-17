@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	int progress = 0;
 	int lastDistance = 0;
 	int baseRate = TourGA::mutationRate;
-	int minDistance = pop->getFittest()->getDistance()
+	int minDistance = pop->getFittest()->getDistance();
 
 	cout << "Initial distance: " << minDistance << endl;
 	Tour * bestTour = pop->getFittest();
