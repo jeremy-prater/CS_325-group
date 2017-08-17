@@ -77,17 +77,19 @@ int main(int argc, char *argv[])
 			cout << ++progress << "% [" << pop->getFittest()->getDistance() << "]" << endl;
 		}
 
-		if (lastDistance != pop->getFittest()->getDistance())
+		if (lastDistance == pop->getFittest()->getDistance())
 		{
-			if (TourGA::mutationRate < 64)
+			if (TourGA::mutationRate < 100)
 			{
-				TourGA::mutationRate *= 2;
+				TourGA::mutationRate++;
+				cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
 			}
 		}
-		else //if (TourGA::mutationRate > baseRate)
+		else if (TourGA::mutationRate > baseRate)
 		{
 			//TourGA::mutationRate /= 2;
 			TourGA::mutationRate = baseRate;
+			cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
 		}
 		lastDistance = pop->getFittest()->getDistance();
 	}
