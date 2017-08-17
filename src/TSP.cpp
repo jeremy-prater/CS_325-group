@@ -12,6 +12,14 @@ using namespace std::chrono;
 
 #define NUMT 24
 
+#define MAX_ELITE       100
+#define MAX_TOURNAMENT   10
+#define MAX_POPULATION 1000
+
+#define RATIO_ELITE      0.2
+#define RATIO_TOURNAMENT 0.1
+#define RATIO_POPULATION 3.0
+
 void printUsage()
 {
 	cout << "Incorrect number of arguments!" << endl << endl;
@@ -84,23 +92,23 @@ int main(int argc, char *argv[])
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
 
 	TourGA::mutationRate = 1;
-	TourGA::elitism = TourSet::cityCount() * 0.2;
-	TourGA::tournamentSize = TourSet::cityCount() * 0.1;
-	int popCount = TourSet::cityCount() * 3;
+	TourGA::elitism = TourSet::cityCount() * RATIO_ELITE;
+	TourGA::tournamentSize = TourSet::cityCount() * RATIO_TOURNAMENT;
+	int popCount = TourSet::cityCount() * RATIO_POPULATION;
 
-	if (TourGA::elitism > 100)
+	if (TourGA::elitism > MAX_ELITE)
 	{
-		TourGA::elitism = 100;
+		TourGA::elitism = MAX_ELITE;
 	}
 
-	if (popCount > 3000)
+	if (popCount > MAX_POPULATION)
 	{
-		popCount = 3000;
+		popCount = MAX_POPULATION;
 	}
 
-	if (TourGA::tournamentSize > 30)
+	if (TourGA::tournamentSize > MAX_TOURNAMENT)
 	{
-		TourGA::tournamentSize = 30;
+		TourGA::tournamentSize = MAX_TOURNAMENT;
 	}
 
     omp_set_num_threads(NUMT);
