@@ -83,9 +83,25 @@ int main(int argc, char *argv[])
 	inputFile.close();
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
 
-	TourGA::mutationRate = 2;
+	TourGA::mutationRate = 1;
 	TourGA::elitism = TourSet::cityCount() * 0.2;
 	TourGA::tournamentSize = TourSet::cityCount() * 0.1;
+	int popCount = TourSet::cityCount() * 3;
+
+	if (TourGA::elitism > 100)
+	{
+		TourGA::elitism = 100;
+	}
+
+	if (popCount > 3000)
+	{
+		popCount = 3000;
+	}
+
+	if (TourGA::tournamentSize > 30)
+	{
+		TourGA::tournamentSize = 30;
+	}
 
     omp_set_num_threads(NUMT);
     cout <<  "Using " << NUMT << " threads." << endl;
@@ -99,7 +115,7 @@ int main(int argc, char *argv[])
 	}
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
+	TourPopulation * pop = new TourPopulation(popCount, true);
 
 	pop = TourGA::evolvePopulation(pop);
 	int counter = 0;
