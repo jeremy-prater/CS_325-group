@@ -60,13 +60,20 @@ int main(int argc, char *argv[])
     cout <<  "Using " << NUMT << "threads." << endl;
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 10, true);
+	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
 	cout << "Initial distance: " << pop->getFittest()->getDistance() << endl;
 
 	// Evolve population for 100 generations
 	pop = TourGA::evolvePopulation(pop);
-	for (int i = 0; i < TourSet::cityCount() * 1000; i++) {
+	int counter = 0;
+	int progress = 0;
+	for (int i = 0; i < TourSet::cityCount() * 100; i++) {
 		pop = TourGA::evolvePopulation(pop);
+		if (++counter == TourSet::cityCount())
+		{
+			counter = 0;
+			cout << ++progress << "%" << endl;
+		}
 	}
 
 	// Print final results
