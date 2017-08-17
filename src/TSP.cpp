@@ -79,7 +79,10 @@ int main(int argc, char *argv[])
 
 		if (lastDistance == pop->getFittest()->getDistance())
 		{
-			TourGA::mutationRate *= 2;
+			if (TourGA::mutationRate < 64)
+			{
+				TourGA::mutationRate *= 2;
+			}
 		}
 		else if (TourGA::mutationRate > baseRate)
 		{
