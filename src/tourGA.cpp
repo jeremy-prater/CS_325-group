@@ -14,7 +14,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         elitismOffset = 1;
     }
 
-    #pragma omp parallel for default(none), shared(newPop), private(pop), private(elitismOffset)
+    #pragma omp parallel for default(none), shared(newPop), shared(pop), shared(elitismOffset)
     for (int eIndex = elitismOffset; eIndex < newPop->populationSize(); eIndex++)
     {
         Tour * parent1 = tournamentSelection(pop);
@@ -23,7 +23,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         newPop->saveTour(eIndex, child);
     }
 
-    #pragma omp parallel for default(none), shared(newPop), private(pop), private(elitismOffset)
+    #pragma omp parallel for default(none), shared(newPop), shared(pop), shared(elitismOffset)
     for (int eIndex = elitismOffset; eIndex < newPop->populationSize(); eIndex++)
     {
         mutate(newPop->getTour(eIndex));
