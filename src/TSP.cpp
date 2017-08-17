@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     cout <<  "Using " << NUMT << " threads." << endl;
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 1, true);
+	TourPopulation * pop = new TourPopulation(50, true);//TourSet::cityCount() * 3, true);
 
 	pop = TourGA::evolvePopulation(pop);
 	int counter = 0;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 	cout << "Initial distance: " << minDistance << endl;
 	Tour * bestTour = pop->getFittest();
 
-	for (int i = 0; i < TourSet::cityCount() * 100; i++) {
+	for (int i = 0; i < TourSet::cityCount() * 300; i++) {
 		pop = TourGA::evolvePopulation(pop);
 
 		// Update min distance
