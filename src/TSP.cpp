@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     cout <<  "Using " << NUMT << "threads." << endl;
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
+	TourPopulation * pop = new TourPopulation(50, true);
 	cout << "Initial distance: " << pop->getFittest()->getDistance() << endl;
 
 	// Evolve population for 100 generations

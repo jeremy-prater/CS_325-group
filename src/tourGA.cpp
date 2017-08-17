@@ -1,7 +1,7 @@
 #include "tourGA.h"
 
-int TourGA::mutationRate = 15;
-int TourGA::tournamentSize = 15;
+int TourGA::mutationRate = 7;
+int TourGA::tournamentSize = 5;
 bool TourGA::elitism = true;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
