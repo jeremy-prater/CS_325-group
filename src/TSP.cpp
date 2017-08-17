@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 	pop = TourGA::evolvePopulation(pop);
 	int counter = 0;
 	int progress = 0;
-	int lastDistance = pop->getFittest()->getDistance();
+	int lastDistance = 0;
 	int baseRate = TourGA::mutationRate;
 	for (int i = 0; i < TourSet::cityCount() * 100; i++) {
 		pop = TourGA::evolvePopulation(pop);
@@ -75,23 +75,23 @@ int main(int argc, char *argv[])
 		{
 			counter = 0;
 			cout << ++progress << "% [" << pop->getFittest()->getDistance() << "]" << endl;
-		}
 
-		if (lastDistance == pop->getFittest()->getDistance())
-		{
-			if (TourGA::mutationRate < 100)
+			if (lastDistance == pop->getFittest()->getDistance())
 			{
-				TourGA::mutationRate++;
+				if (TourGA::mutationRate < 100)
+				{
+					TourGA::mutationRate++;
+					cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
+				}
+			}
+			else if (TourGA::mutationRate > baseRate)
+			{
+				//TourGA::mutationRate /= 2;
+				TourGA::mutationRate = baseRate;
 				cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
 			}
+			lastDistance = pop->getFittest()->getDistance();
 		}
-		else if (TourGA::mutationRate > baseRate)
-		{
-			//TourGA::mutationRate /= 2;
-			TourGA::mutationRate = baseRate;
-			cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
-		}
-		lastDistance = pop->getFittest()->getDistance();
 	}
 
 	// Print final results
