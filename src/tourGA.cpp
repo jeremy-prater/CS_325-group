@@ -2,7 +2,7 @@
 
 int TourGA::mutationRate = 2;
 int TourGA::tournamentSize = 25;
-bool TourGA::elitism = false;
+bool TourGA::elitism = true;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
 {

@@ -60,8 +60,7 @@ int main(int argc, char *argv[])
     cout <<  "Using " << NUMT << " threads." << endl;
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
-	cout << "Initial distance: " << pop->getFittest()->getDistance() << endl;
+	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 1, true);
 
 	// Evolve population for 100 generations
 	pop = TourGA::evolvePopulation(pop);
@@ -69,12 +68,25 @@ int main(int argc, char *argv[])
 	int progress = 0;
 	int lastDistance = 0;
 	int baseRate = TourGA::mutationRate;
+	int minDistance = pop->getFittest()->getDistance()
+
+	cout << "Initial distance: " << minDistance << endl;
+	Tour * bestTour = pop->getFittest();
+
 	for (int i = 0; i < TourSet::cityCount() * 100; i++) {
 		pop = TourGA::evolvePopulation(pop);
+
+		// Update min distance
+		if (minDistance > pop->getFittest()->getDistance())
+		{
+			bestTour = pop->getFittest();
+			minDistance = bestTour->getDistance()
+		}
+
 		if (++counter == TourSet::cityCount())
 		{
 			counter = 0;
-			cout << ++progress << "% [" << pop->getFittest()->getDistance() << "]" << endl;
+			cout << ++progress << "% [" << minDistance << "]" << endl;
 
 			if (lastDistance == pop->getFittest()->getDistance())
 			{
@@ -92,6 +104,7 @@ int main(int argc, char *argv[])
 			}
 			lastDistance = pop->getFittest()->getDistance();
 		}
+
 	}
 
 	// Print final results
