@@ -27,6 +27,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         mutate(newPop->getTour(eIndex));
     }
 
+    delete pop;
     return newPop;
 }
 
@@ -90,5 +91,7 @@ Tour * TourGA::tournamentSelection(TourPopulation * pop)
         int randomIndex = (int) rand() % pop->populationSize();
         tournament->saveTour(index, pop->getTour(randomIndex));
     }
-    return tournament->getFittest();
+    Tour * result = tournament->getFittest();
+    delete tournament;
+    return result;
 }
