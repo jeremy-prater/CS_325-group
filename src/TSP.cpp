@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 		if (minDistance > pop->getFittest()->getDistance())
 		{
 			bestTour = pop->getFittest();
-			minDistance = bestTour->getDistance()
+			minDistance = bestTour->getDistance();
 		}
 
 		if (++counter == TourSet::cityCount())
