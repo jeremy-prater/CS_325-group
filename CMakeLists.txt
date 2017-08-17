@@ -17,7 +17,7 @@ set(PROJECT_SRCS
 )
 
 # Compilier settings
-set(CMAKE_CXX_FLAGS "-std=c++11 -O0 -lm -fopenmp")
+set(CMAKE_CXX_FLAGS "-std=c++11 -O0 -lm -fopenmp -g")
 
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/local/include -L/usr/local/lib")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")

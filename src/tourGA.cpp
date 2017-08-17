@@ -2,7 +2,7 @@
 
 int TourGA::mutationRate = 2;
 int TourGA::tournamentSize = 25;
-bool TourGA::elitism = 10;
+int TourGA::elitism = 10;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
 {
@@ -15,7 +15,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         {
             Tour * best = pop->getFittest(minFit);
             minFit = best->getFitness();
-		    newPop->saveTour(0, best);
+		    newPop->saveTour(eIndex, best);
             elitismOffset++;
         }
     }

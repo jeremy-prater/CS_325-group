@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
 	// Initialize population
 	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 1, true);
 
-	// Evolve population for 100 generations
 	pop = TourGA::evolvePopulation(pop);
 	int counter = 0;
 	int progress = 0;
