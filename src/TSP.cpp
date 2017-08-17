@@ -122,6 +122,10 @@ int main(int argc, char *argv[])
 		cout << "Running until path length " << condition << " is found..." << endl;
 	}
 
+	cout << "Using Population Count " << popCount << endl;
+	cout << "Using Elite Count " << TourGA::elitism << endl;
+	cout << "Using Tournament Count " << TourGA::tournamentSize << endl;
+
 	// Initialize population
 	TourPopulation * pop = new TourPopulation(popCount, true);
 
