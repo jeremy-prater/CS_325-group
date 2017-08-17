@@ -24,7 +24,7 @@ Tour * TourPopulation::getTour(int index)
     return tours[index];
 }
 
-Tour * TourPopulation::getFittest(double minFit = 0)
+Tour * TourPopulation::getFittest(double minFit)
 {
     Tour * fittest = tours[0];
     for (size_t index = 1; index < tours.size(); index++)
