@@ -2,16 +2,22 @@
 
 int TourGA::mutationRate = 2;
 int TourGA::tournamentSize = 25;
-bool TourGA::elitism = true;
+bool TourGA::elitism = 10;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
 {
     TourPopulation * newPop = new TourPopulation(pop->populationSize(), false);
     int elitismOffset = 0;
-    if (TourGA::elitism)
+    if (TourGA::elitism > 0)
     {
-		newPop->saveTour(0, pop->getFittest());
-        elitismOffset = 1;
+        double minFit = 0;
+        for (int eIndex = 0; eIndex < TourGA::elitism; eIndex++)
+        {
+            Tour * best = pop->getFittest(minFit);
+            minFit = best->getFitness();
+		    newPop->saveTour(0, best);
+            elitismOffset++;
+        }
     }
 
     #pragma omp parallel for default(none), shared(newPop), shared(pop), shared(elitismOffset)

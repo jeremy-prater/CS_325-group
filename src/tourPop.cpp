@@ -24,12 +24,13 @@ Tour * TourPopulation::getTour(int index)
     return tours[index];
 }
 
-Tour * TourPopulation::getFittest()
+Tour * TourPopulation::getFittest(double minFit = 0)
 {
     Tour * fittest = tours[0];
     for (size_t index = 1; index < tours.size(); index++)
     {
-        if (fittest->getFitness() <= getTour(index)->getFitness())
+        double testFit = getTour(index)->getFitness();
+        if ((fittest->getFitness() <= testFit) && (testFit > minFit))
         {
             fittest = getTour(index);
         }

@@ -90,9 +90,9 @@ int main(int argc, char *argv[])
 
 			if (lastDistance == pop->getFittest()->getDistance())
 			{
-				if (TourGA::mutationRate < 64)
+				if (TourGA::mutationRate <= 10)
 				{
-					TourGA::mutationRate *= 2;
+					TourGA::mutationRate++;
 					cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
 				}
 			}

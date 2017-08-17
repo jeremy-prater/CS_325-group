@@ -15,7 +15,7 @@ public:
 
 private:
     static int tournamentSize;
-    static bool elitism;
+    static int elitism;
 };
 
 #endif // TSP_TOUR_GA_H

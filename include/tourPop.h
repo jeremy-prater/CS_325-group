@@ -9,7 +9,7 @@ public:
     TourPopulation(int populationSize, bool init);
     void saveTour(int index, Tour * tour);
     Tour * getTour(int index);
-    Tour * getFittest();
+    Tour * getFittest(double minFit);
     int populationSize();
 
 private:
