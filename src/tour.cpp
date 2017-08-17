@@ -90,3 +90,11 @@ void Tour::ToString() {
 	}
 	printf("\n");
 }
+
+void Tour::WriteData(std::ofstream * outputFile)
+{
+	for (int i = 0; i < tourLength(); i++)
+	{
+        *outputFile << getCity(i)->getIndex() << std::endl;
+	}
+}

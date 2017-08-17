@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <random>
 #include <iterator>
+#include <fstream>
 
 #include "city.h"
 #include "tourSet.h"
@@ -21,6 +22,7 @@ public:
     int tourLength();
     bool containsCity(City * city);
 	void ToString();
+    void WriteData(std::ofstream * outputFile);
 
 private:
     std::vector<City *> tour;

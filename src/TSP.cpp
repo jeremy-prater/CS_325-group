@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -66,15 +65,15 @@ int main(int argc, char *argv[])
 	}
 
 	// Print final results
-	cout << "Finished" << endl;
-	cout << "Final distance: " << pop->getFittest()->getDistance() << endl;
-	cout << "Solution: " << endl;
 	Tour * finalTour = pop->getFittest();
+	cout << "Finished" << endl;
+	cout << "Final distance: " << finalTour->getDistance() << endl;
+	cout << "Solution: " << endl;
 	
-	finalTour->ToString();
-
 	cout << "Writing to file [" << outFile << "]" << endl;
-
+	outputFile << finalTour->getDistance() << endl;
+	finalTour->WriteData(&outputFile);
+	outputFile.close();
 
 	return 0;
 }
