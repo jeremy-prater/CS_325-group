@@ -78,11 +78,14 @@ int main(int argc, char *argv[])
 		int x = stoi(vstrings[1]);
 		int y = stoi(vstrings[2]);
 		City * newCity = new City (index, x, y);
-		TourSet::addCity(newCity);	
+		TourSet::addCity(newCity);
     }
 	inputFile.close();
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
-	TourGA::elitism = TourSet::cityCount() / 2;
+
+	TourGA::mutationRate = 2;
+	TourGA::elitism = TourSet::cityCount() * 0.2;
+	TourGA::tournamentSize = TourSet::cityCount() * 0.1;
 
     omp_set_num_threads(NUMT);
     cout <<  "Using " << NUMT << " threads." << endl;
@@ -96,7 +99,7 @@ int main(int argc, char *argv[])
 	}
 
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 2, true);
+	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
 
 	pop = TourGA::evolvePopulation(pop);
 	int counter = 0;
@@ -140,9 +143,9 @@ int main(int argc, char *argv[])
 		// Adaptive Mutation
 		/*if (lastDistance == pop->getFittest()->getDistance())
 		{
-			if (TourGA::mutationRate <= 10)
+			if (TourGA::mutationRate < 20)
 			{
-				//TourGA::mutationRate++;
+				TourGA::mutationRate++;
 				//cout << "Mutation Rate : [" << TourGA::mutationRate << "]" << endl;
 			}
 		}

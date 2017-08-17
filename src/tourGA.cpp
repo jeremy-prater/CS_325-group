@@ -1,8 +1,8 @@
 #include "tourGA.h"
 
-int TourGA::mutationRate = 2;
-int TourGA::tournamentSize = 5;
-int TourGA::elitism = 35;
+int TourGA::mutationRate = 0;
+int TourGA::tournamentSize = 0;
+int TourGA::elitism = 0;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
 {
@@ -46,13 +46,13 @@ Tour * TourGA::crossover (Tour * parent1, Tour * parent2)
     int endPos = (int)rand() % parent1->tourLength();
     for (int index = 0; index < child->tourLength(); index++)
     {
-        if ((startPos < endPos) && (index > startPos) && (index < endPos))
+        if ((startPos < endPos) && (index >= startPos) && (index <= endPos))
         {
             child->setCity(index, parent1->getCity(index));
         }
         else if (startPos > endPos)
         {
-            if (!((index < startPos) && (index > endPos)))
+            if (!((index <= startPos) && (index >= endPos)))
             {
                 child->setCity (index, parent1->getCity(index));
             }

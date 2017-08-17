@@ -28,5 +28,5 @@ int City::distanceTo(City * destCity)
 {
     int dx = getX() - destCity->getX();
     int dy = getY() - destCity->getY();
-    return (int)sqrt ((dx*dx) + (dy*dy));
+    return (int)round(sqrt ((dx*dx) + (dy*dy)));
 }
