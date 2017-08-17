@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
 
     omp_set_num_threads(NUMT);
-    cout <<  "Using " << NUMT << "threads." << endl;
+    cout <<  "Using " << NUMT << " threads." << endl;
 
 	// Initialize population
 	TourPopulation * pop = new TourPopulation(TourSet::cityCount() * 3, true);
