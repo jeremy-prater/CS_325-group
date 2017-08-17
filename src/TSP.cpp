@@ -12,13 +12,15 @@ using namespace std::chrono;
 
 #define NUMT 24
 
-#define MAX_ELITE       100
-#define MAX_TOURNAMENT   10
-#define MAX_POPULATION 1000
+#define MIN_ELITE       5
+#define MIN_TOURNAMENT  5
+#define MIN_POPULATION  50
 
-#define RATIO_ELITE      0.2
-#define RATIO_TOURNAMENT 0.1
-#define RATIO_POPULATION 3.0
+#define WORKPERTHREAD 30000
+
+#define RATIO_ELITE      0.10f
+#define RATIO_TOURNAMENT 0.01f
+#define RATIO_POPULATION 1.00f
 
 void printUsage()
 {
@@ -92,23 +94,27 @@ int main(int argc, char *argv[])
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
 
 	TourGA::mutationRate = 1;
-	TourGA::elitism = TourSet::cityCount() * RATIO_ELITE;
-	TourGA::tournamentSize = TourSet::cityCount() * RATIO_TOURNAMENT;
-	int popCount = TourSet::cityCount() * RATIO_POPULATION;
 
-	if (TourGA::elitism > MAX_ELITE)
+	// Find the normalized load factor
+	double normalF = (NUMT * WORKPERTHREAD) / TourSet::cityCount();
+
+	TourGA::elitism = normalF * RATIO_ELITE;
+	TourGA::tournamentSize = normalF * RATIO_TOURNAMENT;
+	int popCount = normalF * RATIO_POPULATION;
+
+	if (TourGA::elitism < MIN_ELITE)
 	{
-		TourGA::elitism = MAX_ELITE;
+		TourGA::elitism = MIN_ELITE;
 	}
 
-	if (popCount > MAX_POPULATION)
+	if (popCount < MIN_POPULATION)
 	{
-		popCount = MAX_POPULATION;
+		popCount = MIN_POPULATION;
 	}
 
-	if (TourGA::tournamentSize > MAX_TOURNAMENT)
+	if (TourGA::tournamentSize < MIN_TOURNAMENT)
 	{
-		TourGA::tournamentSize = MAX_TOURNAMENT;
+		TourGA::tournamentSize = MIN_TOURNAMENT;
 	}
 
     omp_set_num_threads(NUMT);
