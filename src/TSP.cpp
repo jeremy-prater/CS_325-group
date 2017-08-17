@@ -12,9 +12,9 @@ using namespace std::chrono;
 
 #define NUMT 24
 
-#define MIN_ELITE       5
 #define MIN_TOURNAMENT  5
-#define MIN_POPULATION  50
+#define MIN_ELITE       5
+#define MIN_POPULATION  15
 
 #define WORKPERTHREAD 30000
 
