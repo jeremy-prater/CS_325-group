@@ -1,6 +1,8 @@
 #ifndef TSP_CITY_H
 #define TSP_CITY_H
 
+#include <omp.h>
+
 class City
 {
 public:

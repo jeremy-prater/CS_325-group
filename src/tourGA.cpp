@@ -1,7 +1,7 @@
 #include "tourGA.h"
 
-int TourGA::mutationRate = 5;
-int TourGA::tournamentSize = 5;
+int TourGA::mutationRate = 15;
+int TourGA::tournamentSize = 15;
 bool TourGA::elitism = true;
 
 TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
@@ -14,6 +14,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         elitismOffset = 1;
     }
 
+    #pragma omp parallel for default(none), shared(newPop), shared(pop), shared (elitismOffset)
     for (int eIndex = elitismOffset; eIndex < newPop->populationSize(); eIndex++)
     {
         Tour * parent1 = tournamentSelection(pop);
@@ -22,6 +23,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
         newPop->saveTour(eIndex, child);
     }
 
+    #pragma omp parallel for default(none), shared(newPop), shared(pop), shared (elitismOffset)
     for (int eIndex = elitismOffset; eIndex < newPop->populationSize(); eIndex++)
     {
         mutate(newPop->getTour(eIndex));

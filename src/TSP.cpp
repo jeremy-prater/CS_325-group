@@ -6,6 +6,8 @@
 
 using namespace std;
 
+#define NUMT 4
+
 int main(int argc, char *argv[])
 {
 	// Seed random number generator
@@ -54,13 +56,16 @@ int main(int argc, char *argv[])
 	inputFile.close();
 	cout << "Read Complete! [" << TourSet::cityCount() << "] Cities. Beginning TSP." << endl;
 
+    omp_set_num_threads(NUMT);
+    cout <<  "Using " << NUMT << "threads." << endl;
+
 	// Initialize population
-	TourPopulation * pop = new TourPopulation(1500, true);
+	TourPopulation * pop = new TourPopulation(100, true);
 	cout << "Initial distance: " << pop->getFittest()->getDistance() << endl;
 
 	// Evolve population for 100 generations
 	pop = TourGA::evolvePopulation(pop);
-	for (int i = 0; i < 500; i++) {
+	for (int i = 0; i < 10000; i++) {
 		pop = TourGA::evolvePopulation(pop);
 	}
 
