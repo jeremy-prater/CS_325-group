@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 		if (++counter == TourSet::cityCount())
 		{
 			counter = 0;
-			cout << ++progress << "%" << endl;
+			cout << ++progress << "% [" << pop->getFittest()->getDistance() << "]" << endl;
 		}
 	}
 
