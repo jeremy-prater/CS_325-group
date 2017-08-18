@@ -16,10 +16,10 @@ using namespace std::chrono;
 #define MIN_ELITE       5
 #define MIN_POPULATION  15
 
-#define WORKPERTHREAD 30000
+#define WORKPERTHREAD 4000
 
-#define RATIO_ELITE      0.750f
-#define RATIO_TOURNAMENT 0.450f
+#define RATIO_ELITE      0.010f
+#define RATIO_TOURNAMENT 0.500f
 #define RATIO_POPULATION 1.000f
 
 void printUsage()
