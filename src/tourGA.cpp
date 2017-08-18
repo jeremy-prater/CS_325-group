@@ -11,6 +11,7 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
     if (TourGA::elitism > 0)
     {
         double minFit = 0;
+        #pragma omp parallel for default(none), shared(newPop), shared(elitismOffset), shared(minFit), shared(pop)
         for (int eIndex = 0; eIndex < TourGA::elitism; eIndex++)
         {
             Tour * best = pop->getFittest(minFit);
