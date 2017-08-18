@@ -13,7 +13,8 @@ public:
     int populationSize();
 
 private:
-    std::vector<Tour *> tours;
+    Tour ** tours;
+    int popSize;
 };
 
 #endif // TSP_TOUR_POP_H

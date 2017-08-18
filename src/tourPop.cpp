@@ -2,10 +2,11 @@
 
 TourPopulation::TourPopulation(int populationSize, bool init)
 {
-    for (int index=0; index < populationSize; index++)
+    popSize = populationSize;
+    tours = (Tour **) malloc (populationSize * sizeof (Tour *));
+    if (init)
     {
-        tours.push_back(NULL);
-        if (init)
+        for (int index=0; index < populationSize; index++)
         {
             Tour * newTour = new Tour();
             newTour->generate();
@@ -27,7 +28,7 @@ Tour * TourPopulation::getTour(int index)
 Tour * TourPopulation::getFittest(double minFit)
 {
     Tour * fittest = tours[0];
-    for (size_t index = 1; index < tours.size(); index++)
+    for (size_t index = 1; index < popSize; index++)
     {
         double testFit = getTour(index)->getFitness();
         if ((fittest->getFitness() <= testFit) && (testFit > minFit))
@@ -40,5 +41,5 @@ Tour * TourPopulation::getFittest(double minFit)
 
 int TourPopulation::populationSize()
 {
-    return tours.size();
+    return popSize;
 }
