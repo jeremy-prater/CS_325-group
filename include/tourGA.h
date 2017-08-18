@@ -13,7 +13,7 @@ public:
     static TourPopulation * evolvePopulation(TourPopulation * pop);
     static Tour * crossover (Tour * parent1, Tour * parent2);
     static void mutate(Tour * tour);
-    static Tour * tournamentSelection(TourPopulation * pop);
+    static Tour * tournamentSelection(TourPopulation * pop, int maxIndex);
 };
 
 #endif // TSP_TOUR_GA_H
