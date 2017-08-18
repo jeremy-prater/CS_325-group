@@ -24,8 +24,8 @@ TourPopulation * TourGA::evolvePopulation(TourPopulation * pop)
     #pragma omp parallel for default(none), shared(newPop), shared(pop), shared(elitismOffset)
     for (int eIndex = elitismOffset; eIndex < newPop->populationSize(); eIndex++)
     {
-        Tour * parent1 = tournamentSelection(pop);
-        Tour * parent2 = tournamentSelection(pop);
+        Tour * parent1 = tournamentSelection(pop, elitismOffset);
+        Tour * parent2 = tournamentSelection(pop, elitismOffset);
         Tour * child = crossover(parent1, parent2);
         newPop->saveTour(eIndex, child);
     }
@@ -91,13 +91,13 @@ void TourGA::mutate(Tour * tour)
     }
 }
 
-Tour * TourGA::tournamentSelection(TourPopulation * pop)
+Tour * TourGA::tournamentSelection(TourPopulation * pop, int maxIndex)
 {
     TourPopulation * tournament = new TourPopulation(TourGA::tournamentSize, false);
 
     for (int index = 0; index < TourGA::tournamentSize; index++)
     {
-        int randomIndex = (int) rand() % pop->populationSize();
+        int randomIndex = (int) rand() % maxIndex; //pop->populationSize();
         tournament->saveTour(index, pop->getTour(randomIndex));
     }
     Tour * result = tournament->getFittest();
